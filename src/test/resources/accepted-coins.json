@@ -1,0 +1,24 @@
+{
+  "accepted_coins": [
+    {
+      "denomination": "pence",
+      "value": 1
+    },
+    {
+      "denomination": "pence",
+      "value": 5
+    },
+    {
+      "denomination": "pence",
+      "value": 20
+    },
+    {
+      "denomination": "pence",
+      "value": 50
+    },
+    {
+      "denomination": "pence",
+      "value": 100
+    }
+  ]
+}

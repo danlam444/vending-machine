@@ -1,0 +1,24 @@
+{
+  "products": [
+    {
+      "name": "CANDY",
+      "price": 10
+    },
+    {
+      "name": "SNACK",
+      "price": 50
+    },
+    {
+      "name": "NUTS",
+      "price": 75
+    },
+    {
+      "name": "Coke",
+      "price": 150
+    },
+    {
+      "name": "Bottle Water",
+      "price": 100
+    }
+  ]
+}
