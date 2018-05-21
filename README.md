@@ -23,5 +23,5 @@ mvn clean test
 ## Run App
 Run the following command in the project directory
 ```
-mvn exec:java -D"exec.mainClass"="com.lammyhill.vendingmachine.VendingMachineRunner"
+mvn clean install exec:java -D"exec.mainClass"="com.lammyhill.vendingmachine.VendingMachineRunner"
 ```
