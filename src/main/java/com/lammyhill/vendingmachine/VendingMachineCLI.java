@@ -9,14 +9,14 @@ e.g (InputStream in,PrintStream out)
  */
 
 /**
- * 
+ *Command Line Interface to handle end user input, output and interactions with the underlying vending machine.
  */
 public class VendingMachineCLI {
-    VendingMachineSimulator vendingMachineSimulator;
+    iVendingMachine vendingMachine;
     Scanner command;
 
     public VendingMachineCLI(){
-        vendingMachineSimulator = new VendingMachineSimulator(new AcceptedCoinLoader(), new InventorySimulator());
+        this.vendingMachine = new VendingMachineSimulator(new AcceptedCoinLoader(), new InventorySimulator());
         command = new Scanner(System.in);
     }
 
@@ -26,7 +26,7 @@ public class VendingMachineCLI {
         while(run){
 
             System.out.println("\n\n[Vending Machine Simulator] \n" +
-                                "Current balance is: " + vendingMachineSimulator.getBalance() + "\n" +
+                                "Current balance is: " + vendingMachine.getBalance() + "\n" +
                                 "Please pick one of the following options: \n" +
                                 "1. Insert a coin \n" +
                                 "2. Purchase a product \n" +
@@ -66,7 +66,7 @@ public class VendingMachineCLI {
 
     public void insertCoin(){
         System.out.println("Select a coin to insert:");
-        ArrayList<Coin> acceptedCoins =  vendingMachineSimulator.getAcceptedCoins();
+        ArrayList<Coin> acceptedCoins =  vendingMachine.getAcceptedCoins();
         for(int i=0; i<acceptedCoins.size(); i++){
             System.out.println(i+1 + ". " + acceptedCoins.get(i).getValue() + " " + acceptedCoins.get(i).getDenomination());
         }
@@ -77,20 +77,20 @@ public class VendingMachineCLI {
         }
         else{
             try {
-                vendingMachineSimulator.insertCoin(acceptedCoins.get(optionNumber - 1));
+                vendingMachine.insertCoin(acceptedCoins.get(optionNumber - 1));
             }
             catch(UnrecognizedCoinException e){
                 System.out.println("Vending Machine does not accept this coin. " + e.getMessage());
             }
             System.out.println("Coin accepted");
-            System.out.println("Your updated balance is: " + vendingMachineSimulator.getBalance());
+            System.out.println("Your updated balance is: " + vendingMachine.getBalance());
         }
     }
 
     public void purchaseProduct(){
-        System.out.println("Your balance is: " + vendingMachineSimulator.getBalance());
+        System.out.println("Your balance is: " + vendingMachine.getBalance());
         System.out.println("Select a product to purchase:");
-        ArrayList<Product> products =  vendingMachineSimulator.getSupportedProducts();
+        ArrayList<Product> products =  vendingMachine.getSupportedProducts();
         for(int i=0; i<products.size(); i++){
             System.out.println(i+1 + ". " + products.get(i).getName() + " " + products.get(i).getPrice());
         }
@@ -106,8 +106,8 @@ public class VendingMachineCLI {
                 boolean confirmPurchase = confirmPurchase(product);
 
                 if(confirmPurchase){
-                    vendingMachineSimulator.purchaseProduct(product);
-                    ArrayList<Coin> changeInCoins = vendingMachineSimulator.returnBalance();
+                    vendingMachine.purchaseProduct(product);
+                    ArrayList<Coin> changeInCoins = vendingMachine.returnBalance();
 
                     System.out.println("Purchased: " + product.getName());
                     System.out.println("Your change is given back in the following coin(s):");
@@ -151,13 +151,13 @@ public class VendingMachineCLI {
 
     public void reset(){
         System.out.println("Resetting Vending Machine...");
-        vendingMachineSimulator.reset();
+        vendingMachine.reset();
     }
 
     public void returnBalance(){
-        if(vendingMachineSimulator.getBalance() > 0) {
+        if(vendingMachine.getBalance() > 0) {
             System.out.println("Your balance is given back in the following coin(s):");
-            ArrayList<Coin> changeInCoins = vendingMachineSimulator.returnBalance();
+            ArrayList<Coin> changeInCoins = vendingMachine.returnBalance();
             for (Coin coin : changeInCoins) {
                 System.out.println(coin.getValue() + " " + coin.getDenomination());
             }

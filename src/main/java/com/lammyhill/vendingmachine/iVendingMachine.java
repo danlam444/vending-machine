@@ -9,4 +9,12 @@ interface iVendingMachine {
     ArrayList<Coin> returnBalance();
 
     void reset();
+
+    int getBalance();
+
+    ArrayList<Coin> getAcceptedCoins();
+
+    ArrayList<Product> getSupportedProducts();
+
+    boolean purchaseProduct(Product product) throws UnrecognizedProductException, InsufficientFundsException;
 }
